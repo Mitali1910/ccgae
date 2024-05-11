@@ -1,10 +1,18 @@
 
-def depthFirstSearch(visited, graph, node):
-    if node not in visited:
-        print(node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            depthFirstSearch(visited, graph, neighbour)
+def breadthFirstSearch(graph, start):
+    visited = []
+    queue = []
+    visited.append(start)
+    queue.append(start)
+
+    while queue:
+        m = queue.pop(0)
+        print(m, end=" ")
+
+        for neighbour in graph[m]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
 
 def create_graph():
     graph = {}
@@ -22,6 +30,7 @@ def create_graph():
 
 print("Create your tree:")
 graph = create_graph()
-visited = set()
-print("\nDepth-First Search:")
-depthFirstSearch(visited, graph, '1')
+start_node = input("Enter the starting node for BFS traversal: ")
+print("\nBreadth-First Search:")
+breadthFirstSearch(graph, start_node)
+
